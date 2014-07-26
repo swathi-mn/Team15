@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/bootstrap-tag.css" rel="stylesheet">
+	<script type='text/javascript' src="js/jquery8.min.js"></script>
+	<link href="css/bootstrap-tag.less" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}</script>
+	<script>		
+		jQuery(window).load(function() {	
+		$x = $(window).width();		
+		if($x > 1024)
+		{			
+			jQuery("#content .row").preloader();    
+		}	
+		jQuery('.magnifier').touchTouch();				
+		jQuery('.spinner').animate({'opacity':0},1000,'easeOutCubic',function (){jQuery(this).css('display','none')});	
+  		}); 		 
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-tag.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script>
+	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}</script>
+	<!-- Tab icon -->
+	<link rel="icon" href="img/icon.png" type="image/x-icon"/>
+
+	<title style="color:white;">
+		EnAble India
+	</title>
+	<style>
+		.well {
+			background-color: rgba(245, 245, 245, 0.4);
+		}
+		.typeahead
+		{
+			width: 316px;
+		}
+		.white
+		{
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript">
+        
+		function getXmlHttpObject()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            } 
+            return xmlhttp;
+        }
+		
+		
+		function makeRequest()
+        {
+            xmlHTTP=getXmlHttpObject();
+			xmlHTTP.open("POST","php/onloadhomepage.php",true);
+            xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlHTTP.send(); 
+            xmlHTTP.onreadystatechange=funload;
+        }
+        
+		// Sets the name and profile picture of the user on page load.
+        function funload()
+		{
+            if(xmlHTTP.readyState===4 && xmlHTTP.status===200)
+            {
+				var pic = document.getElementById("userpic");
+                var welcome = document.getElementById("welcome");
+				var mp = document.getElementById("linktoprofile");
+				var obj = JSON.parse(xmlHTTP.responseText);
+				welcome.innerHTML = "Hi, " + obj[0].firstname;                
+                mp.innerHTML = obj[0].firstname + " " + obj[0].lastname;
+                pic.setAttribute("src", obj[0].linktodp);
+            }
+		}
+	
+	</script>
+    </head>
+    
+    <body style="background-image:url(img/im1.jpg)" onload="mentee_reommend()">
+        <div class="spinner"></div>
+        
+		<!-- Navbar -->
+		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">  
+			<div class="navbar-header" style="padding-left:60px;">      
+			
+	        <a class="navbar-brand" href="home.html"><b style="color:#ffffff; font-size:28px;">EnAble India</b></a>
+			<div class="pull-right" style="padding-left:850px;padding-top:15px;">
+                        <a href="skillsnewmentee.html" style="color:white; font-size:20px"><b>Add skill</b></a>
+                        <a href="index.html" class="" style="color:white;padding-left:15px;font-size:20px"><b>Log Out</b></a>
+			</div>
+     
+			</div>
+		</nav>
+		<!-- End Navbar -->
+		
+		</br></br></br></br>
+        
+		<!-- User info panel-->
+		<div class="span2 offset1">
+			<div class="well fluid" style="padding-left:13px;">
+				<center>
+					<b id="welcome" style="color:white;">
+
+					</b>
+				</center>
+				<div  style="padding-top:4px;">
+					<a href="myprofile.html" id="myprofile" style="font-size:35px; color:white;">
+						Welcome Mentor
+					</a>
+					<hr>
+					<a style="font-size:25px; color:white;">Mentees</a>
+				</div>
+				<center>
+					<div class = "media-body">
+						<a href="myprofile.html" class="media" id="myprofile"><b id="linktoprofile" style="color:white;"></b></a>
+					</div>
+				</center>
+			</div>
+		</div>
+		<!-- End user info panel-->
+
+		<!-- Upload accordion-->
+		<div class="container-well"style="color:white;">
+		
+		</div>
+		<div class="span2 offset8">
+			<div class="well fluid" style="padding-left:10px;">
+				<center>
+					<b id="welcome" style="color:white;">
+
+					</b>
+				</center>
+				<div  style="padding-top:4px;">
+					<a href="myprofile.html" id="myprofile" style="font-size:25px; color:white;">
+						Suggestions
+					</a>
+					<hr>
+					<a style="font-size:25px; color:white;">Mentees</a>
+				</div>
+				<center>
+					<div class = "media-body">
+						<a href="myprofile.html" class="media" id="myprofile"><b id="linktoprofile" style="color:white;"></b></a>
+					</div>
+				</center>
+			</div>
+		</div>
+		
+			<!-- End Accordion-->			
+			
+			<!-- Begin Posts-->
+			<div style=" padding-left:30px;">
+				<div class="row">
+					<div class="span9" style="border-top:solid; border-width:2px; background-color:rgba(245, 245, 245, 0.1);">
+						SUGGESTIONS FOR YOU:
+						<div class="pad40-top" id="here">	
+						
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		flag = false;	
+			
+		
+		function upload()
+		{
+			if((document.getElementById('tags').value === "" || document.getElementById('description').value === "" ))
+			{
+				document.getElementById("message").innerHTML = "Fields cannot be left empty.";
+				event.preventDefault();
+			}		
+			else if(!flag)
+			{
+				document.getElementById("message").innerHTML = "Select an audio to proceed.";
+				event.preventDefault();
+			}
+			else
+			{
+				upload_insert();
+			}			
+		}
+		
+						 
+		
+		function next()
+        {
+            if(xmlHTTP.readyState===4&& xmlHTTP.status===200)
+            {
+                  var test=xmlHTTP.responseText;
+                  console.log(test);
+                  if(test.trim()==='true')
+						window.location.href="home.html";
+                  else if(test.trim()==='false')
+						document.getElementById("message").innerHTML = "Error.";
+            }
+        }
+		function mentee_reommend()
+		{
+				
+				xmlHTTP=getXmlHttpObject();
+				xmlHTTP.open("POST","php/mentee_rec.php",true);
+				xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");      
+				//var data=xmlHTTP.onreadystatechange;
+				xmlHTTP.onreadystatechange=function()
+				{
+					if (xmlHTTP.readyState==4 && xmlHTTP.status==200)
+					{
+						console.log(xmlHTTP.responseText);
+						document.getElementById("here").innerHTML=xmlHTTP.responseText;
+					}
+				}
+				xmlHTTP.send();
+				//xmlHTTP.send("email=" + email + "&password=" + password + "&role=" + r);
+			//	xmlHTTP.onreadystatechange = function(){change(r);};
+		}
+	</script>
+</html>

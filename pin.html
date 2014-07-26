@@ -9,10 +9,9 @@
     document.write(results);
 	});*/
 	
-	var zip = "110003";
+	var zip = "560075";
     var lat;
     var lng;
-	var loc;
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': zip }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -20,15 +19,17 @@
 			
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1]) {
-					
+					de=results;
+					//alert("came here");
+					//alert(results[1]);
                     loc = getCityState(results);
-	
+					alert(loc);
                 }
             }
         });
         }
     }); 
-alert(loc);
+
 function getCityState(results)
     {
         var a = results[0].address_components;
