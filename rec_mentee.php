@@ -14,17 +14,19 @@ else
 	
 	while($row = mysqli_fetch_array($mentee_skill)) 
 	{
-			$msk=$row['skills'];
+			$msk=$row['skill'];
 	}
    // echo $msk;
-	while($rows = mysqli_fetch_array($mentor_skill)) 
+	$rows = mysqli_fetch_array($mentor_skill);
 	{
 		//echo "came here";
-		//echo $rows['skill']." ".$msk;
-		foreach($msk as $m)
+		$m=$rows['skills'];
+		$m=explode(',',$m);
+		
+		foreach($m as $mi)
 		{
 			//`echo '$m is '.$m.'and skill is '.$rows['skill'].'<br>';
-			if(strcasecmp($rows['skill'],$m)==0)
+			if(strcasecmp($msk,$mi)==0)
 			{
 				echo $rows['email'];
 				echo '<br>';
