@@ -19,32 +19,21 @@
 		$password = clean($_POST['password']);
 		$dob = clean($_POST['dob']);
 		$gender = clean($_POST['gender']);
-		$role = clean($_POST['role']);
+		$role = clean($_POST['pin']);
 		$phone = clean($_POST['phone']); 
-		$address = clean($_POST['address']); 
 		
+
 		// Encryption
 		$pass = sha1($password);
-		if($role == 'e')
-		{
-			$r = 4;
-		}
-		else if($role == 'r')
-		{
-			$r = 3;
-		}
-		
 	
-		$query = "INSERT INTO user_info(emailid, first_name, last_name, dob, gender, password, address, phone) VALUES ('$email','$firstname','$lastname','$dob','$gender','$pass', '$address','$phone')";
+		$query = "INSERT INTO user_info(emailid, first_name, last_name, dob, gender, password, pincode) VALUES ('$email','$firstname','$lastname','$dob','$gender','$pass', $pin)";
 		$state = mysql_query($query);
-		
-		$q = "INSERT INTO user_role(emailid, role_value) VALUES ('$email', '$r')";
-		mysql_query($q);
 	
 		if($state)
 		{
 			$response = 'no_error';
-			$_SESSION['emailid'] = $email;
+			// Setting up a session variable.
+			$_SESSION['username'] = $username;
 		}
 		else
 		{

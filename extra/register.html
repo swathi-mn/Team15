@@ -43,7 +43,7 @@
 		<div class="spinner"></div>
 		</br>
 		</br>
-		<h4 style="padding-left:50px; color:white;">Register</h4>
+		<h4 style="padding-left:50px;">Register</h4>
 		<!-- Begin form-->
 		<div class="container-fluid">
             <div class="row-fluid">
@@ -68,7 +68,7 @@
 					<div class="controls">
 						<div class="input-prepend">
 							<span class="add-on"><i class="icon-user"></i></span>
-							<input type="text" class="input-xlarge" id="firstname" name="firstname" placeholder="First name" alt="Enter first name">
+							<input type="text" class="input-xlarge" id="firstname" name="firstname" placeholder="First name" onfocus="validate()" alt="Enter first name">
 						</div>
 					</div>
 				</div>
@@ -205,20 +205,20 @@
 			}
 			else
 			{
-				var p = document.getElementById("pin").value;
-				maps(p);
+				send_to_server();
 			}
 		}
 		
 		var r;
 		// Sends information to server via AJAX. 
-		function send_to_server(address)
+		function send_to_server()
 		{
 				var firstname = document.getElementById('firstname').value;
 				var lastname = document.getElementById('lastname').value;
 				var email = document.getElementById('email').value;
 				var password = document.getElementById("password1").value;
 				var dob = document.getElementById("datepicker").value;
+				var pin = document.getElementById("pin").value;
 				var phone = document.getElementById("phone").value;
 				var radios = document.getElementsByName('sex');
 				var role = document.getElementsByName('role');
@@ -237,12 +237,12 @@
 				xmlHTTP=getXmlHttpObject();
 				xmlHTTP.open("POST","php/register.php",true);
 				xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");      
-				xmlHTTP.send("firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&password=" + password + "&gender=" + gender + "&dob=" + dob + "&role=" + r + "&phone=" + phone + "&address=" + address);
-				xmlHTTP.onreadystatechange= function(){change(r);}
+				xmlHTTP.send("firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&password=" + password + "&gender=" + gender + "&dob=" + dob + "&role=" + r + "&phone=" + phone + "&pin=" + pin);
+				xmlHTTP.onreadystatechange= function(){change(r, pin);}
 		}
 		
 		// Checking for server response
-		function change(r)
+		function change(r, pin)
 		{
 			if(xmlHTTP.readyState===4 && xmlHTTP.status===200) 
             {    
@@ -256,31 +256,29 @@
 						window.location.href = "mentor_home.html"
 				}
                 else if(check.trim() ==='error')
-                    alert("Please re-enter the details.");
+                    document.getElementById("message").innerHTML = "Please re-enter the details.";
 			}
 		}
 		
-		
-	function maps(pin)
-	{	
-		var lat;
-		var lng;
-		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({ 'address': pin }, function (results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
+    var lat;
+    var lng;
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': pin }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+			geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+
+                    loc = getCityState(results);
+
+                }
+            }
+        });
+        }
+    }); 
 	
-				if (status == google.maps.GeocoderStatus.OK) {
-					if (results[1]) {	
-							loc = getCityState(results);
-							send_to_server(loc);
-						}
-					}
-				});
-			}
-		}); 
-	}
-	
+	alert(loc);
 	function getCityState(results)
     {
         var a = results[0].address_components;

@@ -39,11 +39,11 @@
 		<div class="spinner"></div>
 		</br>
 		</br>
-		<h2 style="padding-left:50px; color:white;">Enable India</h2>
+		<h2 style="padding-left:50px; color:white;">Welcome</h2>
 		<!-- Begin form-->
-		<div class="container-fluid span3 offset7">
+		<div class="container-fluid">
             <div class="row-fluid">
-				<div>
+				<div class="span6 offset3">
 				</br></br>
 				
 				<form class="form-horizontal" method="POST">
@@ -73,10 +73,10 @@
 				<div class ="control-group">
                     <label class="control-label"><b style="color:#ffffff" alt="Select role as mentor or mentee">Role</b></label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="role" value="mentee" checked>
+                    <input type="radio" name="role" value="e" checked>
                     <b style="color:#ffffff">Mentee</b>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="role" value="mentor">
+                    &nbsp;&nbsp;
+                    <input type="radio" name="role" value="r">
                     <b style="color:#ffffff">Mentor</b>
                 </div>				
 				
@@ -95,22 +95,12 @@
                         <b><input type="button" class="btn btn-info" value="Login" onclick="button_click();"/></b>
                     </div>
                </div>
-			   
 				</form>
 				<!--End form-->
 				</div>
             </div>
 </div>
-			<div class="span 2 offset5">	
-				<div class="control-group">
-                    <label class="control-label"></label>
-                    <div class="controls" style="padding-left:100px;">
-                        <b><input type="button" class="btn btn-success btn-large" value="Register" style="font-size:20px;" onclick="register();"/></b>
-                    </div>
-               </div>
-			</div>
 		</br></br>
-		
 	</body>
 
 	<script>
@@ -132,6 +122,20 @@
 			return xmlhttp;
         }
 		
+	
+		function next()
+        {
+            if(xmlHTTP.readyState===4&& xmlHTTP.status===200)
+            {
+                  var test=xmlHTTP.responseText;
+                  console.log(test);
+                  if(test.trim()==='true')
+                          window.location.href="home.html";
+                  else if(test.trim()==='false')
+                      document.getElementById("message").innerHTML = "Please re-enter the details.";
+            }
+        }
+		
 		function button_click()
 		{
 			if(document.getElementById('password').value === "" || document.getElementById('email').value === "")
@@ -151,7 +155,6 @@
 		{
 				var email = document.getElementById('email').value;
 				var password = document.getElementById("password").value;
-				var role = document.getElementsByName("role");
 				for (var i = 0, length = role.length; i < length; i++) {
 					if (role[i].checked) {
 						r = role[i].value;
@@ -161,32 +164,29 @@
 				xmlHTTP=getXmlHttpObject();
 				xmlHTTP.open("POST","php/login.php",true);
 				xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");      
-				xmlHTTP.send("email=" + email + "&password=" + password + "&role=" + r);
-				xmlHTTP.onreadystatechange = function(){change(r);};
+				xmlHTTP.send("email=" + email + "&password=" + password);
+				xmlHTTP.onreadystatechange=change;
 		}
 		
 		// Checking for server response
-		function change(r)
+		function change()
 		{
 			if(xmlHTTP.readyState===4 && xmlHTTP.status===200) 
             {    
-                var check=xmlHTTP.responseText;   
+                var check=xmlHTTP.responseText;
+                console.log(check);    
                 if(check.trim() ==='no_error')
 				{
-                    if(r == "mentee")
+                    if(r == "e")
 						window.location.href = "mentee_home.html";
-					else if(r == "mentor")
+					else if(r == "r")
 						window.location.href = "mentor_home.html";
 				}
                 else if(check.trim() ==='error')
-                    alert("Please re-enter the details.");
+                    document.getElementById("message").innerHTML = "Please re-enter the details.";
 			}
 		}
 		
-		function register()
-		{
-			window.location.href = "register.html";
-		}
-		
 	</script>
+	
 </html>
