@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css" rel="stylesheet">
+	<link href="css/bootstrap-tag.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/touchTouch.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<link href="css/bootstrap-tag.less" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}</script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script>		
+		jQuery(window).load(function() {	
+		$x = $(window).width();		
+		if($x > 1024)
+		{			
+			jQuery("#content .row").preloader();    
+		}	
+		jQuery('.magnifier').touchTouch();			
+		jQuery('.spinner').animate({'opacity':0},1000,'easeOutCubic',function (){jQuery(this).css('display','none')});	
+  		}); 		
+
+		$(function() {
+			$("#datepicker").datepicker();
+		});
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-tag.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script>
+	<!-- Tab icon -->
+	<link rel="icon" href="img/icon.png" type="image/x-icon"/>
+
+	<title>
+		Register
+	</title>
+	</head>
+	<body style="background-image:url(img/im1.jpg)">
+		<div class="spinner"></div>
+		</br>
+		</br>
+		<h4 style="padding-left:50px;">Register</h4>
+		<!-- Begin form-->
+		<div class="container-fluid">
+            <div class="row-fluid">
+				<div class="span6 offset3">
+				</br></br>
+				
+				<form class="form-horizontal" method="POST">
+				</br></br>
+				
+				<div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Email</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-envelope"></i></span>
+							<input type="text" class="input-xlarge" id="email" name="email" placeholder="Email" alt="Enter email id">
+						</div>
+					</div>
+				</div>
+                
+                 <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">First Name</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-user"></i></span>
+							<input type="text" class="input-xlarge" id="firstname" name="firstname" placeholder="First name" onfocus="validate()" alt="Enter first name">
+						</div>
+					</div>
+				</div>
+
+                 <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Last Name</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-user"></i></span>
+							<input type="text" class="input-xlarge" id="lastname" name="lastname" placeholder="Last name" alt="Enter last name">
+						</div>
+					</div>
+				</div>
+		
+                 <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Pincode</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-home"></i></span>
+							<input type="text" class="input-xlarge" id="pin" name="pin" placeholder="Enter pin code" alt="Enter pin code">
+						</div>
+					</div>
+				</div>	
+
+                 <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Phone number</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-signal"></i></span>
+							<input type="text" class="input-xlarge" id="phone" name="phone" placeholder="Enter phone number" alt="Enter phone number">
+						</div>
+					</div>
+				</div>					
+		
+                 <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Date of birth</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-calendar"></i></span>
+							<input type="text" class="input-xlarge" id="datepicker" name="dob" placeholder="MM/DD/YYYY" alt="Enter date of birth">
+						</div>
+					</div>
+				</div>
+
+				<div class ="control-group">
+                    <label class="control-label"><b style="color:#ffffff" alt="Select gender">Gender</b></label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="sex" value="m" checked>
+                    <b style="color:#ffffff">Male</b>
+                    &nbsp;&nbsp;
+                    <input type="radio" name="sex" value="f">
+                    <b style="color:#ffffff">Female</b>
+                </div>
+		
+           		<div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Password</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span>
+							<input type="Password" id="password1" class="input-xlarge" name="password1" placeholder="Password" alt="Enter password">
+						</div>
+					</div>
+				</div>
+		
+                <div class="control-group">
+					<label class="control-label"><b style="color:#ffffff">Confirm Password</b></label>
+					<div class="controls">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span>
+                            <input type="Password" id="password2" class="input-xlarge" name="password2" placeholder="Re-enter Password" alt="Re-enter password">
+						</div>
+					</div>
+				</div>
+				
+				<div class ="control-group">
+                    <label class="control-label"><b style="color:#ffffff" alt="Select role as mentor or mentee">Role</b></label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="role" value="e" checked>
+                    <b style="color:#ffffff">Mentee</b>
+                    &nbsp;&nbsp;
+                    <input type="radio" name="role" value="r">
+                    <b style="color:#ffffff">Mentor</b>
+                </div>
+
+               <div class="control-group">
+                    <label class="control-label"></label>
+                    <div class="controls" style="padding-left:100px;">
+                        <b><input type="button" class="btn btn-info" value="Register" onclick="button_click();" alt="Submit"/></b>
+                    </div>
+               </div>
+				</form>
+				<!--End form-->
+				</div>
+            </div>
+</div>
+		</br></br>
+	</body>
+
+	<script>
+		
+		// XMLHttp object for AJAX 
+		function getXmlHttpObject()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {	// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {	// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            } 
+			return xmlhttp;
+        }
+		
+		function button_click()
+		{
+			if(document.getElementById('firstname').value === "" || document.getElementById('lastname').value === "" || document.getElementById('password1').value === "" 
+				|| document.getElementById('password2').value === "" || document.getElementById('datepicker').value === "" || document.getElementById('email').value === "" || 
+				document.getElementById('pin').value === "" || document.getElementById('phone').value === "")
+			{
+				alert("Required fields cannot be left empty.");
+				return;
+			}
+			else if(document.getElementById('password1').value != document.getElementById('password2').value)
+			{
+				alert("Passwords do not match.");
+				return;
+			}
+			else if(!(/\S+@\S+\.\S+/.test(document.getElementById('email').value)))
+			{
+				alert("Email ID not valid.");
+				return;
+			}
+			else
+			{
+				send_to_server();
+			}
+		}
+		
+		var r;
+		// Sends information to server via AJAX. 
+		function send_to_server()
+		{
+				var firstname = document.getElementById('firstname').value;
+				var lastname = document.getElementById('lastname').value;
+				var email = document.getElementById('email').value;
+				var password = document.getElementById("password1").value;
+				var dob = document.getElementById("datepicker").value;
+				var pin = document.getElementById("pin").value;
+				var phone = document.getElementById("phone").value;
+				var radios = document.getElementsByName('sex');
+				var role = document.getElementsByName('role');
+				for (var i = 0, length = radios.length; i < length; i++) {
+					if (radios[i].checked) {
+						var gender = radios[i].value;
+						break;
+					}
+				}
+				for (var i = 0, length = role.length; i < length; i++) {
+					if (role[i].checked) {
+						r = role[i].value;
+						break;
+					}
+				}
+				xmlHTTP=getXmlHttpObject();
+				xmlHTTP.open("POST","php/register.php",true);
+				xmlHTTP.setRequestHeader("Content-type", "application/x-www-form-urlencoded");      
+				xmlHTTP.send("firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&password=" + password + "&gender=" + gender + "&dob=" + dob + "&role=" + r + "&phone=" + phone + "&pin=" + pin);
+				xmlHTTP.onreadystatechange= function(){change(r, pin);}
+		}
+		
+		// Checking for server response
+		function change(r, pin)
+		{
+			if(xmlHTTP.readyState===4 && xmlHTTP.status===200) 
+            {    
+                var check=xmlHTTP.responseText;
+                console.log(check);    
+                if(check.trim() ==='no_error')
+				{
+                    if(r == "e")
+						window.location.href = "mentee_home.html"
+					else if(r == "r")
+						window.location.href = "mentor_home.html"
+				}
+                else if(check.trim() ==='error')
+                    document.getElementById("message").innerHTML = "Please re-enter the details.";
+			}
+		}
+		
+    var lat;
+    var lng;
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ 'address': pin }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+			geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+
+                    loc = getCityState(results);
+
+                }
+            }
+        });
+        }
+    }); 
+	
+	alert(loc);
+	function getCityState(results)
+    {
+        var a = results[0].address_components;
+        var city, state;
+        for(i = 0; i <  a.length; ++i)
+        {
+           var t = a[i].types;
+           if(compIsType(t, 'administrative_area_level_1'))
+              state = a[i].long_name; //store the state
+           else if(compIsType(t, 'locality'))
+              city = a[i].long_name; //store the city
+        }
+        return (city + ', ' + state)
+    }
+
+	function compIsType(t, s) { 
+       for(z = 0; z < t.length; ++z) 
+          if(t[z] == s)
+             return true;
+       return false;
+    }		
+	</script>
+</</html>
