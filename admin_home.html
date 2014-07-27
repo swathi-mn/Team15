@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/bootstrap-tag.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/touchTouch.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<link href="css/bootstrap-tag.less" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+	
+	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}</script>
+
+	<script>		
+		jQuery(window).load(function() {	
+		$x = $(window).width();		
+		if($x > 1024)
+		{			
+			jQuery("#content .row").preloader();    
+		}	
+		jQuery('.magnifier').touchTouch();			
+		jQuery('.spinner').animate({'opacity':0},1000,'easeOutCubic',function (){jQuery(this).css('display','none')});	
+  		}); 		 
+	</script>	
+	<script>
+		$(window).load(function(){       
+			getRequests();
+		});
+		
+		function getRequests()
+		{
+			$.ajax({
+            type: "POST",
+            url: "ret.php",
+            cache: false,
+            success: function(response)
+            {
+				$('#here').html(response);
+            }
+            });			
+		}
+		
+		
+		function getXmlHttpObject()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {	// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {	// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            } 
+			return xmlhttp;
+        }
+		
+		function sendmail(company)
+		{
+			
+            xmlHTTP=getXmlHttpObject();
+			xmlHTTP.open("POST","php/mail_all.php",true);
+            xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			document.getElementById("wait").innerHTML = "Sending mail. Wait...";
+            xmlHTTP.send("company=" + company); 
+            xmlHTTP.onreadystatechange=boo;
+		}
+		
+		function boo()
+		{
+			if(xmlHTTP.readyState===4 && xmlHTTP.status===200)
+            {
+				document.getElementById("wait").innerHTML = "Sent!";
+				window.location.href = "admin_home.html";
+            }
+		}
+		
+	
+		
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-tag.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script>
+	<!-- Tab icon -->
+	<link rel="icon" href="img/icon.jpg" type="image/x-icon"/>
+	<title>
+		Welcome
+	</title>
+	</head>	
+	<body style="background-image:url(img/im1.jpg)">
+		<div class="spinner"></div>
+		<!-- Navbar -->
+		<div class="span12">
+			<div class="navbar navbar-inverse navbar-fixed-top left">
+				<div class="navbar-inner">
+					<div class="container">
+						<div class="nav">
+							<li>
+								<a class="brand" href="admin_home.html"><b style="font-size:20px;">EnAble India</b></a>
+							</li>
+							<ul class="nav pull-right" style="padding-left:450px;">							
+								<li><!-- Place this tag where you want the share button to render. -->
+									<div class="g-plus" data-action="share" data-height="24"></div></li>	
+								<li><a href="register.html">Home</a></li>	
+								<li>
+									<a href="index.html"><b>&nbsp;Log out</b>&nbsp;</a>
+								</li>						
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Navbar -->	
+		
+		</br></br></br>
+		<div class="well span7 offset3">
+			<div id="myTabContent" class="tab-content">		   	
+				<div class="jumbotron">
+				  <h1 style="color: #118bc1">Welcome</h1>  
+				  <hr>
+				  <br>
+						<div class="panel-group" id="accordion" style="width:210"> 
+							<div class="panel panel-default"> 
+								<div class="panel-heading"> 
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Mentor-Mentee List:</a> <br><b id="wait" style="color:green;"></b>
+									
+								</h4> 
+							</div>
+							<a href="index1.html">See the Graphs</a><br>
+						</div>
+					</div>
+							<div id="collapseTwo" class="panel-collapse collapse in" style="width:1000"> 
+								<div class="panel-body" id="here">
+
+								</div> 							
+								<br>
+							</div>						
+					</div>	
+					</div>
+				   <hr>
+				</div>
+	</body>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>	
+</html>

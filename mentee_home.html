@@ -134,7 +134,7 @@
 		<div style=" padding-left:20px;">
 				<div class="row">
 					<div class="span7" style="border-top:solid; border-width:2px; background-color:rgba(245, 245, 245, 0.1);">
-						<div  id="here">											
+						<div  id="here1">											
 							<ul style="color:white;font-size:35px;">
 								Personal Developement Programme 
 							</ul>
@@ -147,22 +147,8 @@
 			<!-- End Accordion-->			
 			
 			<!-- Begin Posts-->
-			<div class="span2 offset1">
-				<div class="well fluid" style="padding-left:10px;">
-				<div  style="padding-top:4px;">
-					<a href="myprofile.html" id="myprofile" style="font-size:25px; color:white;">
-						Suggestions
-					</a>
-					<hr>
-					<a style="font-size:25px; color:white;">Mentors</a>
-				</div>
-				<center>
-					<div class = "media-body">
-						<a href="myprofile.html" class="media" id="myprofile"><b id="linktoprofile" style="color:white;"></b></a>
-					</div>
-				</center>
-				</div>
-				<div class="pad40-top" id="here">	
+			<div class="span6 offset3">
+				<div class="pad40-top" id="here" style="color: white; font-size:20px;">	
 					
 				</div>
 		</div>
@@ -197,13 +183,19 @@
 						console.log(xmlHTTP.responseText);
 						document.getElementById("here").innerHTML="";
 						text=xmlHTTP.responseText.split("!");
-						for(i=0;i<text.length;i++)
+						for(i=0;i<text.length - 1;i++)
 						{
-							document.getElementById("here").innerHTML+=text[i]+"<button onclick='mir()'>SUBMIT</button><br>";
+							document.getElementById("here").innerHTML += text[i] + "&nbsp;&nbsp;<button class = 'btn btn-success' onclick='mir("+ text[i] +")'>Submit</button><br>";
 						}
 					}
 				}
 				
+		}
+		
+		function mir(b)
+		{
+			var a = arguments[0];
+			alert(a);			
 		}
 	</script>
 </html>

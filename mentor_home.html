@@ -59,6 +59,24 @@
             return xmlhttp;
         }
 		
+		$(window).load(function(){       
+			getRequests();
+		});
+		
+		function getRequests()
+		{
+			$.ajax({
+            type: "POST",
+            url: "php/mentee_list.php",
+            cache: false,
+            success: function(response)
+            {
+				$('#pop').html(response);
+				
+            }
+            });			
+		}
+		
 	</script>
     </head>
     
@@ -89,10 +107,9 @@
 
 					</b>
 				</center>
-				<div  style="padding-top:4px;">
+				<div  style="padding-top:4px;font-size:20px; color:white;">
 						Welcome Mentor
 					<hr>
-					<a style="font-size:25px; color:white;">Mentees</a>
 				</div>
 			</div>
 		</div>
@@ -112,22 +129,12 @@
 				</div>
 			</div>
 			</br>
-			<div class="span2 offset1">
-			<div class="well fluid" style="padding-left:10px;">
-				<center>
-					<b id="welcome" style="color:white;">
-
-					</b>
-				</center>
-				<div  style="padding-top:4px;">
-						Suggestions
-					<hr>
-					<a style="font-size:25px; color:white;">Mentees</a>
-				</div>
-			</div>
-		</div>
-		
 			<!-- End Accordion-->			
+			<b class="span5 offset2" style="color:white; font-size:20px;">The students being mentored under you are: </b>
+			</br></br>
+				<div class="container span6 offset1" style="color:white; font-size:15px;" id="pop">
+					
+				</div>
 		</div>
 	</body>
 	<script>

@@ -1,14 +1,14 @@
 <html>
 <head>Admin</head>
 <?php
-	$link=mysql_connect("localhost","root","123")or die("can not connect");
-	mysql_select_db("enable_india",$link) or die("can not select database");
+	$link=mysql_connect("localhost","root","code2014!")or die("can not connect");
+	mysql_select_db("enable",$link) or die("can not select database");
 	$p = "select * from  mentor_mentee_list";
 	$pes=mysql_query($p,$link) or die("Wrong Query");
-	$ter_date=$_POST['termination_date'];
-	$x="UPDATE mentor_mentee_list SET end_date=$ter_date WHERE ter_flag='1'";
+	//$ter_date=$_POST['termination_date'];
+	//$x="UPDATE mentor_mentee_list SET end_date=$ter_date WHERE ter_flag='1'";
 	
-	$xyz=mysql_query($x,$link) or die("Wrong Query");
+	//$xyz=mysql_query($x,$link) or die("Wrong Query");
 	echo 'Mentor Mentee sessions details are:';
 	echo "<table border='1'>
 	<tr>
