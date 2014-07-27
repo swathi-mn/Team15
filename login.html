@@ -188,5 +188,28 @@
 			window.location.href = "register.html";
 		}
 		
+		function getXmlHttpObject()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            } 
+            return xmlhttp;
+        }
+		unset();
+		
+		function unset()
+		{
+			xmlHTTP=getXmlHttpObject();
+			xmlHTTP.open("POST","php/unset.php",true);
+            xmlHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlHTTP.send(); 
+		}
+		
 	</script>
 </html>
