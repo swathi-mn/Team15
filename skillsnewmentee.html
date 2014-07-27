@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/bootstrap-tag.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/touchTouch.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<link href="css/bootstrap-tag.less" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/touchTouch.jquery.js"></script>
+	
+	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}</script>
+
+	<script>		
+		jQuery(window).load(function() {	
+		$x = $(window).width();		
+		if($x > 1024)
+		{			
+			jQuery("#content .row").preloader();    
+		}	
+		jQuery('.magnifier').touchTouch();			
+		jQuery('.spinner').animate({'opacity':0},1000,'easeOutCubic',function (){jQuery(this).css('display','none')});	
+  		}); 		 
+	</script>	
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-tag.js"></script>
+	<script src="js/bootstrap-typeahead.js"></script>
+	<!-- Tab icon -->
+	<link rel="icon" href="img/icon.jpg" type="image/x-icon"/>
+	<title>
+		Welcome
+	</title>
+	<script>
+		
+		function submit()
+		{
+			var skill = document.getElementById('skill').value;
+			var data = "skill=" + skill; 
+			$.ajax({
+            type: "POST",
+            url: "php/addnewskillmentee.php",
+            cache: false,
+			data : data,
+            success: function(response)
+            {
+				window.location.href = "mentee_home.html";
+            }
+            });				
+		}		
+		      
+	</script>
+	<style>
+		.typeahead
+		{
+			width: 367px;
+		}
+	</style>
+	</head>	
+	<body style="background-image:url(img/im1.jpg)">
+		<div class="spinner"></div>
+		<!-- Navbar -->
+		<div class="span12">
+			<div class="navbar navbar-inverse navbar-fixed-top left">
+				<div class="navbar-inner">
+					<div class="container">
+						<div class="nav">
+							<li>
+								<a class="brand" href="mentee_home"><b style="font-size:20px; color:white">Enable India</b></a>
+							</li>							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Navbar -->
+		</br></br></br></br></br></br>
+		<div class="container well span7 offset3">
+			<form class="navbar-form span6" method="POST" style="padding-bottom:20px;" action="javascript:submit();">
+				<div class="form-group" style="display:inline;">
+					<div class="input-group">
+						<input type="text"  class="form-control span4" id="skill" name="skill" placeholder="Add required skill">				
+						<button class="btn btn-success" onclick="submit();">Submit</button>
+					</div>					
+				</div>
+			</form>
+			</br>
+			<div id="here" style="padding-top:20px;">
+			
+			</div>
+		</div>
+	</body>
+</html>
